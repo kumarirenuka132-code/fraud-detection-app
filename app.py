@@ -6,63 +6,114 @@ import plotly.graph_objects as go
 
 st.set_page_config(
     page_title="Fraud Detection Dashboard",
-    page_icon="💳",
+    page_icon="shield",
     layout="wide"
 )
+
 # -------------------------------
-# CUSTOM CSS
+# LOAD FONT AWESOME + CSS
 # -------------------------------
 st.markdown("""
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 .block-container {
-    padding-top: 1.5rem;
+    padding-top: 1.2rem;
     padding-bottom: 2rem;
+    max-width: 95%;
+}
+html, body, [class*="css"] {
+    font-family: 'Segoe UI', sans-serif;
 }
 .main-title {
-    font-size: 42px;
+    font-size: 40px;
     font-weight: 800;
-    color: white;
+    color: #f8fafc;
     margin-bottom: 0.2rem;
 }
 .sub-title {
-    font-size: 17px;
-    color: #cbd5e1;
+    font-size: 16px;
+    color: #94a3b8;
     margin-bottom: 1.5rem;
 }
+.section-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-top: 1rem;
+    margin-bottom: 0.7rem;
+}
+.icon-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-top: 1rem;
+    margin-bottom: 0.7rem;
+}
 .metric-card {
-    background: #1e293b;
-    padding: 18px;
+    background: linear-gradient(145deg, #172033, #1e293b);
+    padding: 20px;
     border-radius: 18px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+    border: 1px solid #243047;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
 }
 .metric-label {
     color: #94a3b8;
-    font-size: 15px;
+    font-size: 14px;
+    margin-bottom: 8px;
 }
 .metric-value {
-    color: white;
-    font-size: 26px;
+    color: #ffffff;
+    font-size: 30px;
     font-weight: 700;
 }
+.panel-card {
+    background: #111827;
+    border: 1px solid #253046;
+    border-radius: 18px;
+    padding: 18px;
+}
 .safe-box {
-    background: #052e16;
-    color: #bbf7d0;
+    background: linear-gradient(90deg, #08361d, #0f5132);
+    color: #dcfce7;
     padding: 16px;
     border-radius: 14px;
     font-size: 18px;
     font-weight: 600;
+    border-left: 5px solid #22c55e;
 }
 .fraud-box {
-    background: #450a0a;
-    color: #fecaca;
+    background: linear-gradient(90deg, #3b0b0b, #7f1d1d);
+    color: #fee2e2;
     padding: 16px;
     border-radius: 14px;
     font-size: 18px;
     font-weight: 600;
+    border-left: 5px solid #ef4444;
 }
-.small-text {
+.note-box {
     color: #94a3b8;
     font-size: 13px;
+    padding: 10px 0 0 0;
+}
+.sidebar-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+}
+.small-icon-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.custom-divider {
+    border-top: 1px solid #243047;
+    margin: 16px 0;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -93,38 +144,37 @@ if "latest_result" not in st.session_state:
 # SIDEBAR
 # -------------------------------
 with st.sidebar:
-    st.title("⚙️ Control Panel")
+    st.markdown('<div class="sidebar-title"><i class="fa-solid fa-sliders"></i> Control Panel</div>', unsafe_allow_html=True)
+    st.markdown('<div class="custom-divider"></div>', unsafe_allow_html=True)
 
-    st.markdown("### About Project")
-    st.write(
-        "This app predicts whether a transaction is fraudulent using a trained Random Forest model."
-    )
+    st.markdown('<div class="small-icon-title"><i class="fa-solid fa-circle-info"></i> About Project</div>', unsafe_allow_html=True)
+    st.write("This app predicts whether a transaction is fraudulent using a trained Random Forest model.")
 
-    st.markdown("### Features")
-    st.success("Real-time Fraud Prediction")
-    st.success("Risk Score")
-    st.success("Prediction History")
-    st.success("CSV Download")
-    st.success("Audit Summary")
-    st.success("Risk Gauge")
+    st.markdown('<div class="small-icon-title"><i class="fa-solid fa-layer-group"></i> Features</div>', unsafe_allow_html=True)
+    st.info("Real-time Fraud Prediction")
+    st.info("Risk Score Analysis")
+    st.info("Prediction History")
+    st.info("CSV Download")
+    st.info("Audit Summary")
+    st.info("Risk Gauge Dashboard")
 
-    st.markdown("### Model")
-    st.info("Random Forest Classifier")
+    st.markdown('<div class="small-icon-title"><i class="fa-solid fa-microchip"></i> Model</div>', unsafe_allow_html=True)
+    st.success("Random Forest Classifier")
 
-    st.markdown("### Status")
-    st.success("App deployed successfully")
+    st.markdown('<div class="small-icon-title"><i class="fa-solid fa-signal"></i> Status</div>', unsafe_allow_html=True)
+    st.success("Application is running")
 
-    if st.button("🗑 Clear Prediction History", use_container_width=True):
+    if st.button("Clear Prediction History", use_container_width=True):
         st.session_state.history = []
         st.session_state.latest_result = None
         st.rerun()
 
 # -------------------------------
-# MAIN TITLE
+# MAIN HEADER
 # -------------------------------
-st.markdown('<div class="main-title">💳 Fraud Detection Dashboard</div>', unsafe_allow_html=True)
+st.markdown('<div class="main-title">Fraud Detection Dashboard</div>', unsafe_allow_html=True)
 st.markdown(
-    '<div class="sub-title">An AI-based audit interface for detecting suspicious financial transactions with dynamic risk scoring.</div>',
+    '<div class="sub-title">AI-based audit interface for detecting suspicious financial transactions with dynamic risk scoring.</div>',
     unsafe_allow_html=True
 )
 
@@ -133,7 +183,7 @@ if model is None:
     st.stop()
 
 # -------------------------------
-# TOP METRICS
+# METRICS
 # -------------------------------
 pred_count = len(st.session_state.history)
 last_risk = "N/A"
@@ -143,7 +193,7 @@ if pred_count > 0:
 m1, m2, m3, m4 = st.columns(4)
 
 with m1:
-    st.markdown("""
+    st.markdown(f"""
     <div class="metric-card">
         <div class="metric-label">System Status</div>
         <div class="metric-value">Active</div>
@@ -151,7 +201,7 @@ with m1:
     """, unsafe_allow_html=True)
 
 with m2:
-    st.markdown("""
+    st.markdown(f"""
     <div class="metric-card">
         <div class="metric-label">Model Used</div>
         <div class="metric-value">Random Forest</div>
@@ -174,18 +224,16 @@ with m4:
     </div>
     """, unsafe_allow_html=True)
 
-st.markdown("")
-
 # -------------------------------
 # TABS
 # -------------------------------
-tab1, tab2, tab3 = st.tabs(["🔍 Prediction", "📜 History & Charts", "📘 About"])
+tab1, tab2, tab3 = st.tabs(["Prediction", "History & Charts", "About"])
 
 # ===============================
-# TAB 1 - PREDICTION
+# TAB 1
 # ===============================
 with tab1:
-    st.subheader("Transaction Input")
+    st.markdown('<div class="icon-title"><i class="fa-solid fa-credit-card"></i> Transaction Input</div>', unsafe_allow_html=True)
 
     c1, c2 = st.columns(2)
 
@@ -204,14 +252,9 @@ with tab1:
     category_mapping = {cat: i for i, cat in enumerate(category_options)}
     encoded_category = category_mapping[category_input]
 
-    st.markdown(
-        '<div class="small-text">Note: Some features are internally prefilled for demonstration because the trained model expects the complete training feature structure.</div>',
-        unsafe_allow_html=True
-    )
+    st.markdown('<div class="note-box">Some features are internally prefilled for demonstration because the trained model expects the complete training feature structure.</div>', unsafe_allow_html=True)
 
-    st.markdown("")
-
-    if st.button("🚨 Predict Fraud", use_container_width=True):
+    if st.button("Run Fraud Check", use_container_width=True):
         try:
             input_data = pd.DataFrame({
                 'cc_num': [2291163933867240],
@@ -277,11 +320,10 @@ with tab1:
         except Exception as e:
             st.error(f"Prediction error: {e}")
 
-    # SHOW RESULT AFTER RERUN
     if st.session_state.latest_result:
         res = st.session_state.latest_result
 
-        st.markdown("## 📊 Prediction Output")
+        st.markdown('<div class="icon-title"><i class="fa-solid fa-chart-column"></i> Prediction Output</div>', unsafe_allow_html=True)
 
         r1, r2, r3 = st.columns(3)
         with r1:
@@ -293,20 +335,12 @@ with tab1:
 
         st.progress(min(int(res["risk_score"]), 100))
 
-        st.markdown("")
-
         if res["prediction"] == 1:
-            st.markdown(
-                '<div class="fraud-box">⚠ Fraudulent Transaction Detected</div>',
-                unsafe_allow_html=True
-            )
+            st.markdown('<div class="fraud-box">Fraudulent Transaction Detected</div>', unsafe_allow_html=True)
         else:
-            st.markdown(
-                '<div class="safe-box">✅ Transaction is Likely Legitimate</div>',
-                unsafe_allow_html=True
-            )
+            st.markdown('<div class="safe-box">Transaction is Likely Legitimate</div>', unsafe_allow_html=True)
 
-        st.markdown("### 🎯 Risk Gauge Meter")
+        st.markdown('<div class="icon-title"><i class="fa-solid fa-gauge-high"></i> Risk Gauge Meter</div>', unsafe_allow_html=True)
         fig = go.Figure(go.Indicator(
             mode="gauge+number",
             value=res["risk_score"],
@@ -323,7 +357,7 @@ with tab1:
         ))
         st.plotly_chart(fig, use_container_width=True)
 
-        st.markdown("### 🧠 Audit Explanation")
+        st.markdown('<div class="icon-title"><i class="fa-solid fa-magnifying-glass-chart"></i> Audit Explanation</div>', unsafe_allow_html=True)
 
         exp1, exp2 = st.columns(2)
 
@@ -343,7 +377,7 @@ with tab1:
             else:
                 st.success(f"Category '{res['category']}' appears normal in this demo context.")
 
-        st.markdown("### 📌 Final Audit Summary")
+        st.markdown('<div class="icon-title"><i class="fa-solid fa-file-shield"></i> Final Audit Summary</div>', unsafe_allow_html=True)
         st.write(f"- **Timestamp:** {res['timestamp']}")
         st.write(f"- **Transaction Amount:** {res['amount']}")
         st.write(f"- **Selected Category:** {res['category']}")
@@ -364,9 +398,8 @@ Risk Score: {res['risk_score']:.2f}%
 Risk Level: {res['risk_level']}
 Model Used: Random Forest
 """
-
         st.download_button(
-            "📥 Download Result Report",
+            "Download Result Report",
             report,
             file_name="fraud_report.txt",
             mime="text/plain",
@@ -374,19 +407,17 @@ Model Used: Random Forest
         )
 
 # ===============================
-# TAB 2 - HISTORY & CHARTS
+# TAB 2
 # ===============================
 with tab2:
-    st.subheader("Prediction History")
+    st.markdown('<div class="icon-title"><i class="fa-solid fa-clock-rotate-left"></i> Prediction History</div>', unsafe_allow_html=True)
 
     if len(st.session_state.history) == 0:
         st.info("No prediction history yet. Make at least one prediction to see history and charts.")
     else:
         hist_df = pd.DataFrame(st.session_state.history)
-
         st.dataframe(hist_df, use_container_width=True)
 
-        st.markdown("### 📥 Download History")
         csv_data = hist_df.to_csv(index=False).encode("utf-8")
         st.download_button(
             label="Download Prediction History as CSV",
@@ -396,29 +427,24 @@ with tab2:
             use_container_width=True
         )
 
-        st.markdown("### 📈 Risk Score Trend")
+        st.markdown('<div class="icon-title"><i class="fa-solid fa-chart-line"></i> Risk Score Trend</div>', unsafe_allow_html=True)
         trend_df = hist_df[["Time", "Risk Score (%)"]].copy()
         trend_df = trend_df.set_index("Time")
         st.line_chart(trend_df)
 
-        st.markdown("### 📊 Category-wise Average Risk")
+        st.markdown('<div class="icon-title"><i class="fa-solid fa-chart-simple"></i> Category-wise Average Risk</div>', unsafe_allow_html=True)
         cat_chart = hist_df.groupby("Category", as_index=True)["Risk Score (%)"].mean()
         st.bar_chart(cat_chart)
 
-        st.markdown("### 📌 Prediction Distribution")
-        pred_count = hist_df["Prediction"].value_counts()
-        st.bar_chart(pred_count)
-
-        st.markdown("### 📉 Fraud vs Legitimate Summary")
-        summary_df = hist_df["Prediction"].value_counts().reset_index()
-        summary_df.columns = ["Prediction", "Count"]
-        st.dataframe(summary_df, use_container_width=True)
+        st.markdown('<div class="icon-title"><i class="fa-solid fa-chart-pie"></i> Prediction Distribution</div>', unsafe_allow_html=True)
+        pred_count_chart = hist_df["Prediction"].value_counts()
+        st.bar_chart(pred_count_chart)
 
 # ===============================
-# TAB 3 - ABOUT
+# TAB 3
 # ===============================
 with tab3:
-    st.subheader("Project Overview")
+    st.markdown('<div class="icon-title"><i class="fa-solid fa-diagram-project"></i> Project Overview</div>', unsafe_allow_html=True)
     st.write("""
 This fraud detection dashboard is built using **Streamlit** and a **Random Forest Classifier**.
 It predicts whether a transaction is suspicious and assigns a **dynamic risk score**.
@@ -430,10 +456,6 @@ It predicts whether a transaction is suspicious and assigns a **dynamic risk sco
 - Real-time deployed UI using Streamlit
 - GitHub-based deployment
 
-### Current Demo Limitation
-This demo uses a simplified input form while internally pre-filling the remaining model features.
-For a more advanced production version, all training features and preprocessing encoders should be fully integrated into the UI.
-
 ### Deployment Stack
 - **Frontend/UI:** Streamlit
 - **Backend Logic:** Python
@@ -442,4 +464,4 @@ For a more advanced production version, all training features and preprocessing 
     """)
 
 st.markdown("---")
-st.caption("Built with Streamlit, Plotly, and Scikit-learn. Deployed using GitHub + Streamlit Cloud.")
+st.caption("Built with Streamlit, Plotly, and Scikit-learn.")
