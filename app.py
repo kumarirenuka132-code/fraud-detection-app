@@ -735,7 +735,7 @@ tab1, tab2, tab3 = st.tabs(["🔍 Transaction Analysis", "📈 Analytics Dashboa
 with tab1:
     st.markdown("""
     <div class="section-header">
-        <div class="section-icon">🔍</div>
+        <div class="section-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
         <div class="section-title">New Transaction Analysis</div>
     </div>
     """, unsafe_allow_html=True)
