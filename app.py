@@ -12,7 +12,7 @@ import json
 # PAGE CONFIGURATION
 # =========================================================
 st.set_page_config(
-    page_title="Fraud Detection",
+    page_title="Sentinel AI | Fraud Detection",
     page_icon="🛡️",
     layout="wide",
     initial_sidebar_state="expanded"
