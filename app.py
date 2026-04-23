@@ -625,7 +625,7 @@ with st.sidebar:
     st.markdown('<div class="sidebar-section">Navigation</div>', unsafe_allow_html=True)
     
     nav_items = [
-        ("📊", "Dashboard", True),
+        ('<i class="fa-solid fa-chart-line"></i>', "Dashboard", True),
         ("🔍", "Transaction Check", False),
         ("📈", "Analytics", False),
         ("⚙️", "Settings", False),
@@ -837,7 +837,7 @@ with tab1:
             else:
                 st.markdown(f"""
                 <div class="result-box safe">
-                    ✅ TRANSACTION VERIFIED AS LEGITIMATE<br>
+                    <i class="fa-solid fa-circle-check"></i> TRANSACTION VERIFIED AS LEGITIMATE<br>
                     <span style="font-size: 13px; font-weight: 400; opacity: 0.8;">Risk Score: {res["hybrid_score"]:.1f}% | Level: {res["risk_level"]}</span>
                 </div>
                 """, unsafe_allow_html=True)
