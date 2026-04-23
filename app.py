@@ -626,9 +626,9 @@ with st.sidebar:
     
     nav_items = [
         ('<i class="fa-solid fa-chart-line"></i>', "Dashboard", True),
-        ("🔍", "Transaction Check", False),
-        ("📈", "Analytics", False),
-        ("⚙️", "Settings", False),
+        ('<i class="fa-solid fa-magnifying-glass"></i>', "Transaction Check", False),
+        ('<i class="fa-solid fa-chart-line"></i>', "Analytics", False),
+        ('<i class="fa-solid fa-gear"></i>', "Settings", False),
     ]
     
     for icon, label, active in nav_items:
