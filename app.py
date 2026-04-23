@@ -620,13 +620,13 @@ def create_time_series(history_df):
 # SIDEBAR
 # =========================================================
 with st.sidebar:
-    st.markdown('<div class="sidebar-brand">🛡️ Sentinel AI</div>', unsafe_allow_html=True)
+    st.markdown('<div class="sidebar-brand">🛡️Fraud Detection</div>', unsafe_allow_html=True)
     
     st.markdown('<div class="sidebar-section">Navigation</div>', unsafe_allow_html=True)
     
     nav_items = [
-        ("📊", "Dashboard", True),
-        ("🔍", "Transaction Check", True),
+        ("📊", "Dashboard", False),
+        ("🔍", "Transaction Check", False),
         ("📈", "Analytics", False),
         ("⚙️", "Settings", False),
     ]
