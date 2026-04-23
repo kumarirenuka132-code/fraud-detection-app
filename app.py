@@ -669,6 +669,8 @@ with st.sidebar:
 # MAIN HEADER
 # =========================================================
 st.markdown("""
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <div class="app-header animate-in">
     <div style="display: flex; justify-content: space-between; align-items: center;">
         <div>
