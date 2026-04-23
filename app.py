@@ -625,10 +625,10 @@ with st.sidebar:
     st.markdown('<div class="sidebar-section">Navigation</div>', unsafe_allow_html=True)
     
     nav_items = [
-        ('<i class="fa-solid fa-chart-line"></i>', "Dashboard", True),
-        ('<i class="fa-solid fa-magnifying-glass"></i>', "Transaction Check", False),
-        ('<i class="fa-solid fa-chart-line"></i>', "Analytics", False),
-        ('<i class="fa-solid fa-gear"></i>', "Settings", False),
+        ("📊", "Dashboard", True),
+        ("🔍", "Transaction Check", True),
+        ("📈", "Analytics", False),
+        ("⚙️", "Settings", False),
     ]
     
     for icon, label, active in nav_items:
