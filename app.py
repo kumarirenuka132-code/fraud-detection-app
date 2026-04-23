@@ -672,7 +672,7 @@ st.markdown("""
 <div class="app-header animate-in">
     <div style="display: flex; justify-content: space-between; align-items: center;">
         <div>
-            <div class="header-title">Enterprise Fraud Detection</div>
+            <div class="header-title">Fraud Detection</div>
             <div class="header-subtitle">Real-time transaction monitoring powered by AI & rule-based analytics</div>
         </div>
         <div class="status-badge">
