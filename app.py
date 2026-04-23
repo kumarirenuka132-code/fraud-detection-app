@@ -12,7 +12,7 @@ import json
 # PAGE CONFIGURATION
 # =========================================================
 st.set_page_config(
-    page_title="Sentinel AI | Fraud Detection",
+    page_title="Fraud Detection",
     page_icon="🛡️",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -830,7 +830,7 @@ with tab1:
             if res["decision"] == "Fraud":
                 st.markdown(f"""
                 <div class="result-box fraud">
-                    🚨 FRAUDULENT TRANSACTION DETECTED<br>
+                    <i class="fa-solid fa-triangle-exclamation"></i> FRAUDULENT TRANSACTION<br>
                     <span style="font-size: 13px; font-weight: 400; opacity: 0.8;">Risk Score: {res["hybrid_score"]:.1f}% | Level: {res["risk_level"]}</span>
                 </div>
                 """, unsafe_allow_html=True)
@@ -929,7 +929,7 @@ with tab2:
         with c1:
             st.markdown("""
             <div class="section-header">
-                <div class="section-icon">📈</div>
+                <div class="section-icon"><i class="fa-solid fa-chart-line"></i></div>
                 <div class="section-title">Risk Score Trend</div>
             </div>
             """, unsafe_allow_html=True)
