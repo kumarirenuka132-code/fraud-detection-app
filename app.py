@@ -54,7 +54,7 @@ st.markdown("""
 # -----------------------------
 @st.cache_resource
 def load_bundle():
-    with open("fraud_model_bundle.pkl", "rb") as f:
+    with open("model.pkl", "rb") as f:
         return pickle.load(f)
 
 try:
